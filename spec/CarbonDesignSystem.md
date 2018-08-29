@@ -1,7 +1,6 @@
-Carbon Design System
---------------------
+## Carbon Design System
 
-*Current Working Draft*
+_Current Working Draft_
 
 **Introduction**
 
