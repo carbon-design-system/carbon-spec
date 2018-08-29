@@ -9,7 +9,7 @@
     "format": "prettier --write \"**/*.{scss,css,js,md,ts}\"",
     "format:diff": "prettier --list-different \"**/*.{scss,css,js,md,ts}\"",
     "precommit": "lint-staged",
-    "deploy": "gh-pages -d public",
+    "deploy": "yarn build && gh-pages -d public",
     "watch": "nodemon --exec 'yarn build' -w spec -e md"
   },
   "devDependencies": {
