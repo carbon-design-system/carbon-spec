@@ -2,7 +2,7 @@ Carbon Design System
 --------------------
 
 
-_Current Working Draft_
+**Current Working Draft**
 
 **Introduction**
 
