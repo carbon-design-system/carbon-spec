@@ -1,0 +1,16 @@
+{
+  "name": "@carbon/spec",
+  "version": "0.0.0",
+  "repository": "git@github.com:carbon-design-system/spec.git",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "node tasks/build.js",
+    "deploy": "gh-pages -d public",
+    "watch": "nodemon --exec 'yarn build' -w spec -e md"
+  },
+  "devDependencies": {
+    "gh-pages": "^1.2.0",
+    "nodemon": "^1.18.4",
+    "spec-md": "^0.6.0"
+  }
+}
