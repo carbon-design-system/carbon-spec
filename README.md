@@ -1,4 +1,4 @@
-# `@carbon/spec`
+# `@carbon/spec``
 
 > [Experimental] Specification for the Carbon Design System
 
