@@ -39,6 +39,7 @@
     "jest-circus": "^23.6.0",
     "jest-junit": "^5.2.0",
     "lint-staged": "^8.1.0",
+    "lodash": "^4.17.11",
     "prettier": "^1.15.3",
     "rimraf": "^2.6.3",
     "rollup": "^1.1.0",
@@ -87,7 +88,8 @@
     "testMatch": [
       "<rootDir>/**/__tests__/**/*.js?(x)",
       "<rootDir>/**/?(*.)(spec|test).js?(x)",
-      "<rootDir>/**/?(*-)(spec|test).js?(x)"
+      "<rootDir>/**/?(*-)(spec|test).js?(x)",
+      "<rootDir>/**/tests/unit.js?(x)"
     ],
     "transform": {
       "^.+\\.(js|jsx)$": "./tasks/jest/jsTransform.js",
