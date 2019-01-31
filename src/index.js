@@ -5,6 +5,5 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export * from './error';
 export * from './rules';
 export * from './runner';
