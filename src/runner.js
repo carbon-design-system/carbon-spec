@@ -32,7 +32,14 @@ export function createRunner(rules, options = {}) {
       _afterEach = fn;
     },
     async run() {
-      const violations = [];
+      const levels = {
+        error: 'violations',
+        warning: 'warning',
+      };
+      const report = {
+        violations: [],
+        warnings: [],
+      };
       const rulesToRun = rules.filter(rule => {
         if (only.length > 0) {
           return only.includes(rule.id);
@@ -50,10 +57,11 @@ export function createRunner(rules, options = {}) {
           const result = rule.validate(node, rule.context);
 
           if (result) {
+            const severity = levels[rule.level];
             if (Array.isArray(result)) {
-              violations.push(...result);
+              report[severity].push(...result);
             } else {
-              violations.push(result);
+              report[severity].push(result);
             }
           }
 
@@ -61,7 +69,7 @@ export function createRunner(rules, options = {}) {
         })
       );
 
-      return violations;
+      return report;
     },
   };
 }

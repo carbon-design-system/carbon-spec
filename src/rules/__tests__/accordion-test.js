@@ -59,7 +59,7 @@ describe('accordion', () => {
         return node;
       });
 
-      const violations = await runner.run();
+      const { violations } = await runner.run();
       expect(violations.length > 0).toBe(true);
     });
 
@@ -88,7 +88,7 @@ describe('accordion', () => {
         document.body.appendChild(node);
         return node;
       });
-      const violations = await runner.run();
+      const { violations } = await runner.run();
       expect(violations.length > 0).toBe(true);
       expect(violations).toMatchInlineSnapshot(`
 Array [
@@ -137,7 +137,7 @@ Array [
     });
 
     it('should verify aria attributes', async () => {
-      const violations = await runner.run();
+      const { violations } = await runner.run();
       expect(violations.length > 0).toBe(true);
       expect(violations).toMatchInlineSnapshot(`
 Array [
