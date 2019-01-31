@@ -7,4 +7,6 @@
 
 import accordion from './accordion';
 
-export const rules = [...accordion];
+export const rules = {
+  accordion,
+};
