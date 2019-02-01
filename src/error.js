@@ -5,4 +5,20 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export class ValidationError extends Error {}
+import format from 'pretty-format';
+
+export class ValidationError extends Error {
+  constructor([expectation, expected, actual]) {
+    super(expectation);
+
+    if (!expected && !actual) {
+      this.message = expectation;
+    } else if (actual) {
+      this.message =
+        `${expectation}. Expected \`${format(expected)}\`, ` +
+        `instead received: \`${format(actual)}\``;
+    } else {
+      this.message = `${expectation}. Expected \`${format(expected)}\``;
+    }
+  }
+}

@@ -6,7 +6,6 @@
  */
 
 import { ValidationError } from './error';
-import { rules } from './rules';
 
 /**
  * @typedef Runner
@@ -20,9 +19,11 @@ import { rules } from './rules';
  * @param {Array<Rule>} rules
  * @return Runner
  */
-export function createRunner(rules) {
+export function createRunner(rules, options = {}) {
+  const { only = [], exclude = [] } = options;
   let _beforeEach;
   let _afterEach;
+
   return {
     beforeEach(fn) {
       _beforeEach = fn;
@@ -30,23 +31,45 @@ export function createRunner(rules) {
     afterEach(fn) {
       _afterEach = fn;
     },
-    run() {
-      const violations = [];
-
-      for (const rule of rules) {
-        const node = _beforeEach(rule.context);
-        const result = rule.validate(node, rule.context);
-
-        if (result instanceof ValidationError) {
-          violations.push(result);
+    async run() {
+      const levels = {
+        error: 'violations',
+        warning: 'warning',
+      };
+      const report = {
+        violations: [],
+        warnings: [],
+      };
+      const rulesToRun = rules.filter(rule => {
+        if (only.length > 0) {
+          return only.includes(rule.id);
+        } else if (exclude.length > 0) {
+          return exclude.includes(rule.id);
         }
+        // By default, run all rules
+        return true;
+      });
 
-        _afterEach(node);
-      }
+      // Run checks in as many threads as the host environment allows
+      await Promise.all(
+        rulesToRun.map(rule => {
+          const node = _beforeEach(rule.context);
+          const result = rule.validate(node, rule.context);
 
-      return violations;
+          if (result) {
+            const severity = levels[rule.level];
+            if (Array.isArray(result)) {
+              report[severity].push(...result);
+            } else {
+              report[severity].push(result);
+            }
+          }
+
+          _afterEach(node);
+        })
+      );
+
+      return report;
     },
   };
 }
-
-export const Runner = createRunner(rules);

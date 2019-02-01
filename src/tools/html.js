@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import accordion from './accordion';
+import htm from 'htm';
+import { createElement, createExpected } from './createElement';
 
-export const rules = {
-  accordion,
-};
+export const html = htm.bind(createElement);
+export const spec = htm.bind(createExpected);
