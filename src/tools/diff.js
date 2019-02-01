@@ -47,6 +47,16 @@ export function diff(expected, actual) {
       }
     } else {
       if (typeof expected.attributes[key] === 'function') {
+        if (!actual.hasAttribute(key)) {
+          return [
+            [
+              'Expected the markup to contain the correct attribute',
+              expected.attributes[key],
+              actual.getAttribute(key),
+            ],
+          ];
+        }
+
         const result = expected.attributes[key](actual);
         if (result) {
           return [...result];
