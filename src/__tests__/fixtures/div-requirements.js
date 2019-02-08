@@ -5,6 +5,8 @@
 /**
  * Div user test configurations
  * @typedef {object} divTestConfig
+ * @property {object} content - contains content for component
+ * @property {string} content.text - text content for component
  * @property {divElements} selectors - Selectors to grab each element for a div component
  */
 const defaults = {
@@ -20,7 +22,7 @@ const defaults = {
 /**
  * Grabs Div component elements from a DOM
  * @param {DocumentFragment} docFragment - JavaScript document or JSDOM fragment
- * @param {buttonElements} selectors
+ * @param {divElements} selectors
  * @returns {object} elements gathered from the selectors object
  */
 const getDiv = (docFragment, selectors) => {
@@ -65,7 +67,7 @@ const standardDiv = {
  * Returns a set of test objects
  * @return {scenario-test-object[]} test objects for use in `testRunner`
  */
-export const FixtureTests = () => {
+export const divTests = () => {
   return [
     {
       feature: 'Div is understandable and unique', // matches the `Feature` name in div.feature

@@ -4,7 +4,7 @@
  * Scenario test object structure
  * @typedef {object} scenario-test-object
  * @property {string} scenario - Scenario name
- * @property {function} [given] - Given/When statement that determines if test should be ran
+ * @property {function} [given] - Given statement that determines under what conditions a test should run
  * @property {function} [set] - Returns an array of DocumentFragments that the test is executed on
  * @property {function} [inherit] - Returns an array of tests from an inherited component.
  *              Feature document denotes these tests with the @inheritance tag

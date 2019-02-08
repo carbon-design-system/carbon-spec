@@ -8,7 +8,7 @@
  */
 import { JSDOM } from 'jsdom';
 import { TestParser, Itter, GetDomFragment } from '../test-parser';
-import { FixtureTests } from './fixtures/div-requirements';
+import { divTests } from './fixtures/div-requirements';
 
 /**
  * Variable representing a demo of a component
@@ -16,11 +16,11 @@ import { FixtureTests } from './fixtures/div-requirements';
  * @todo the HTML should be pulled in from a static HTML file (path.join(__dirname, 'fixtures/div--variant-one.html'))
  * @type {string}
  */
-const fixtureHTML = `<div class="bx--meow bx--meow--variant-one"><span>Meow unique text</span></div>`;
+const divHTML = `<div class="bx--meow bx--meow--variant-one"><span>Meow unique text</span></div>`;
 
 // this _should_ be done on a per-variant-demo-file basis via a common `setupDom` function,
 //    but don't want to spend time on JSDom setup for this PR
-const { document } = new JSDOM(fixtureHTML).window;
+const { document } = new JSDOM(divHTML).window;
 
 describe('TestParser', () => {
   describe('All functions exist', () => {
@@ -35,6 +35,6 @@ describe('TestParser', () => {
   });
 
   describe('Runs fixture requirement tests', () => {
-    TestParser(FixtureTests(), document);
+    TestParser(divTests(), document);
   });
 });
