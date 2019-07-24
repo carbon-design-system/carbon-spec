@@ -1,0 +1,19 @@
+{
+  "name": "@carbon/accordion-spec",
+  "private": true,
+  "description": "The accordion specification for the Carbon Design System",
+  "version": "0.0.0",
+  "license": "Apache-2.0",
+  "carbon": {
+    "createdAt": "9.0.0",
+    "deprecatedAt": "10.0.0",
+    "maintainers": [
+      "@carbon-design-system/core-team",
+      "@user1",
+      "@user2"
+    ],
+    "status": "draft",
+    "type": "core",
+    "wcag20": "a"
+  }
+}
